@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#241b3f">
+<title>Snoopy's Little World</title>
+<meta name="description" content="Un pequeño mundo de plataformas hecho con cariño. Crea a tu explorador, viaja con Woodstock y encuentra a Snoopy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23241b3f'/%3E%3Cpath d='M20 33c0-8 5-14 12-14s12 6 12 14-5 15-12 15-12-7-12-15z' fill='%23fff8ec'/%3E%3Cellipse cx='22' cy='30' rx='6' ry='9' fill='%23241b3f'/%3E%3Cellipse cx='42' cy='30' rx='6' ry='9' fill='%23241b3f'/%3E%3Cellipse cx='32' cy='48' rx='12' ry='5' fill='%23ff6f91'/%3E%3Ccircle cx='32' cy='38' r='3' fill='%23241b3f'/%3E%3C/svg%3E">
+
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.7 2 11.6 2 7.9 2 5 4.2 2.8 7.1 2.8c1.6 0 3.2.8 4.2 2 .9-1.2 2.5-2 4.1-2 2.9 0 5.1 2.2 5.1 5.1 0 3.7-3.4 6.8-8.6 11.5L12 20.7z"/></symbol>
+  <symbol id="i-bone" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="6.1" cy="6.1" r="3.1"/><circle cx="9.7" cy="3.5" r="3.1"/><circle cx="17.9" cy="17.9" r="3.1"/><circle cx="14.3" cy="20.5" r="3.1"/><rect x="5" y="9" width="13.6" height="6" rx="3" transform="rotate(45 12 12)"/></g></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3.5 9.2h4L13 4.6v14.8l-5.5-4.6h-4z"/><path d="M16.4 8.6a5 5 0 0 1 0 6.8M19 6a8.6 8.6 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M3.5 9.2h4L13 4.6v14.8l-5.5-4.6h-4z"/><path d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.8 8h12.4l1.4 11.6a2 2 0 0 1-2 2.2H6.4a2 2 0 0 1-2-2.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.4" y="4.5" width="4" height="15" rx="1.4"/><rect x="13.6" y="4.5" width="4" height="15" rx="1.4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 4.8l11.2 7.2L8 19.2z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7.4L21 11v9a1 1 0 0 1-1 1h-5v-6.2H9V21H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 4.5L7.5 12 15 19.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 4.5L16.5 12 9 19.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.4L3.6 6.6v13.6L9 18l6 2.4 5.4-2.2V4.6L15 6.8z"/><path d="M9 4.4V18M15 6.8v13.6" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M20.2 3.8v5.4h-5.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 1.8l2.3 7 7 2.3-7 2.3-2.3 7-2.3-7-7-2.3 7-2.3z"/></symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24"><path d="M12 11.4c3.8 0 6.3 2.5 6.3 5.4 0 2.3-1.8 3.8-4.1 3.8-1 0-1.5-.3-2.2-.3s-1.2.3-2.2.3c-2.3 0-4.1-1.5-4.1-3.8 0-2.9 2.5-5.4 6.3-5.4z"/><ellipse cx="5.9" cy="8.4" rx="2.2" ry="2.8"/><ellipse cx="10.2" cy="5.4" rx="2.2" ry="2.9"/><ellipse cx="14.8" cy="5.6" rx="2.2" ry="2.9"/><ellipse cx="18.7" cy="9" rx="2.2" ry="2.8"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5.6C10 3.9 6.8 3.5 4 4.6v13.9c2.8-1 6-.7 8 1 2-1.7 5.2-2 8-1V4.6c-2.8-1-6-.7-8 1z"/><path d="M12 5.6v14" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10.5V17" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="7.2" r="1.3" fill="rgba(255,255,255,.9)"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V3.5"/><path d="M6 4.5c4-2.4 8 2.4 12 0v8c-4 2.4-8-2.4-12 0z"/></symbol>
+  <symbol id="i-heart-outline" viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.7 2 11.6 2 7.9 2 5 4.2 2.8 7.1 2.8c1.6 0 3.2.8 4.2 2 .9-1.2 2.5-2 4.1-2 2.9 0 5.1 2.2 5.1 5.1 0 3.7-3.4 6.8-8.6 11.5L12 20.7z"/></symbol>
+</svg>
+
+<div id="app">
+
+  <!-- ══════════════ SPLASH ══════════════ -->
+  <section id="screen-splash" class="screen splash-screen is-active">
+    <canvas id="splash-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="splash-glow" aria-hidden="true"></div>
+
+    <div class="splash-topbar">
+      <div class="tiny-mark">
+        <svg class="ic"><use href="#i-paw"></use></svg>
+        <span>un pequeño mundo</span>
+      </div>
+      <button class="icon-btn sound-btn" id="btn-splash-sound" aria-label="Activar o silenciar el sonido">
+        <svg class="ic icon-sound-on"><use href="#i-sound"></use></svg>
+        <svg class="ic icon-sound-off"><use href="#i-mute"></use></svg>
+      </button>
+    </div>
+
+    <div class="splash-content">
+      <div class="logo-block">
+        <div class="logo-eyebrow">
+          <span class="line"></span>
+          <span>Una historia para alguien especial</span>
+          <span class="line"></span>
+        </div>
+        <h1 class="game-logo">
+          <span class="logo-script">Snoopy's</span>
+          <span class="logo-main">Little <em>World</em></span>
+        </h1>
+        <p class="splash-tagline">Esta noche, Snoopy se perdió dentro de su libro favorito.<br>
+          Y alguien tendrá que ir a buscarlo entre sueños, preguntas y tesoros.</p>
+        <div class="splash-actions">
+          <button id="btn-start" class="btn btn-primary btn-hero">
+            <svg class="ic"><use href="#i-paw"></use></svg>
+            <span>Comenzar la aventura</span>
+          </button>
+          <button id="btn-continue" class="btn btn-cream hidden">
+            <svg class="ic"><use href="#i-play"></use></svg>
+            <span>Continuar</span>
+          </button>
+        </div>
+        <div class="splash-meta" id="splash-save-note"></div>
+      </div>
+    </div>
+
+    <div class="splash-side-card" aria-hidden="true">
+      <div class="mini-bubble">“Los sueños también saben volver a casa.”</div>
+      <div class="mini-heart"><svg class="ic"><use href="#i-heart"></use></svg></div>
+    </div>
+
+    <footer class="splash-footer">
+      <span>Hecho con cariño para quien ama a Snoopy</span>
+      <span class="dot"></span>
+      <span>HTML5 · Canvas · un montón de huesitos</span>
+    </footer>
+    <div class="film-grain" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══════════════ CREADOR ══════════════ -->
+  <section id="screen-creator" class="screen creator-screen">
+    <canvas id="creator-bg" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="creator-wash" aria-hidden="true"></div>
+
+    <header class="creator-header">
+      <button class="icon-btn back-btn" id="btn-creator-back" aria-label="Volver">
+        <svg class="ic"><use href="#i-left"></use></svg>
+      </button>
+      <div class="creator-heading">
+        <span class="eyebrow">Paso 1 de 2 · Tu protagonista</span>
+        <h2>Crea a tu explorador</h2>
+        <p>La persona que se atreverá a cruzar los cuatro mundos para encontrar a Snoopy.</p>
+      </div>
+      <button id="btn-creator-random" class="btn btn-ghost btn-sm">
+        <svg class="ic"><use href="#i-sparkle"></use></svg>
+        <span>Aleatorio</span>
+      </button>
+    </header>
+
+    <main class="creator-layout">
+      <aside class="creator-preview">
+        <div class="preview-card">
+          <div class="preview-sparkles" aria-hidden="true">
+            <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+            <span class="spark s4"></span><span class="spark s5"></span>
+          </div>
+          <canvas id="char-preview" width="420" height="480" aria-label="Vista previa de tu personaje"></canvas>
+          <div class="preview-ground" aria-hidden="true"></div>
+          <div class="preview-bubble" id="preview-bubble">¡Hola!</div>
+          <div class="preview-woodstock" aria-hidden="true">
+            <div class="ws-note">pío?</div>
+          </div>
+        </div>
+        <label class="name-field">
+          <span class="name-label">¿Cómo te llamas, explorador?</span>
+          <input id="char-name" maxlength="16" placeholder="Escribe tu nombre" autocomplete="off" spellcheck="false">
+          <span class="name-hint">Así te llamarán Snoopy y sus amigos.</span>
+        </label>
+      </aside>
+
+      <section class="creator-panel">
+        <div class="cat-tabs" id="creator-tabs" role="tablist" aria-label="Categorías de personalización"></div>
+        <div class="options-head">
+          <div>
+            <h3 id="options-title">Tono de piel</h3>
+            <p id="options-sub">Elige el tono que más te guste.</p>
+          </div>
+          <div class="options-progress"><span id="creator-progress">8</span> detalles</div>
+        </div>
+        <div class="options-grid" id="creator-options"></div>
+        <div class="creator-footer">
+          <p class="creator-tip" id="creator-tip">Puedes cambiar todo las veces que quieras.</p>
+          <button id="btn-creator-confirm" class="btn btn-primary btn-lg">
+            <span>¡A la aventura!</span>
+            <svg class="ic"><use href="#i-right"></use></svg>
+          </button>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <!-- ══════════════ MAPA ══════════════ -->
+  <section id="screen-map" class="screen map-screen">
+    <canvas id="map-bg" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="map-wash" aria-hidden="true"></div>
+
+    <header class="map-header">
+      <div class="map-logo" id="btn-map-logo">
+        <span class="map-logo-script">Snoopy's</span>
+        <span class="map-logo-main">Little World</span>
+      </div>
+      <div class="map-stats">
+        <div class="stat-pill" title="Huesitos recogidos">
+          <svg class="ic"><use href="#i-bone"></use></svg>
+          <b id="map-bones">0</b>
+        </div>
+        <div class="stat-pill" title="Recuerdos encontrados">
+          <svg class="ic"><use href="#i-sparkle"></use></svg>
+          <b id="map-items">0 / 12</b>
+        </div>
+        <button class="icon-btn" id="btn-map-inventory" aria-label="Abrir inventario">
+          <svg class="ic"><use href="#i-bag"></use></svg>
+        </button>
+        <button class="icon-btn sound-btn" id="btn-map-sound" aria-label="Activar o silenciar el sonido">
+          <svg class="ic icon-sound-on"><use href="#i-sound"></use></svg>
+          <svg class="ic icon-sound-off"><use href="#i-mute"></use></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="map-scroll" id="map-scroll">
+      <div class="map-intro">
+        <div>
+          <span class="eyebrow">El atlas de los sueños</span>
+          <h2 id="map-greeting">Tu aventura apenas comienza</h2>
+        </div>
+        <p class="map-quote" id="map-quote">“Sigue el camino de huesitos: los recuerdos te llevarán hasta él.”</p>
+      </div>
+      <div class="world-path" id="world-path">
+        <div class="path-line" aria-hidden="true"></div>
+        <div class="world-cards" id="world-cards"></div>
+        <div class="finale-wrap hidden" id="finale-wrap">
+          <button class="finale-node" id="btn-finale">
+            <span class="finale-halo" aria-hidden="true"></span>
+            <span class="finale-icon"><svg class="ic"><use href="#i-heart"></use></svg></span>
+            <span class="finale-text">
+              <span class="eyebrow">El último paso</span>
+              <b>El Gran Encuentro</b>
+              <small>El rincón de los sueños te espera</small>
+            </span>
+            <span class="finale-arrow"><svg class="ic"><use href="#i-right"></use></svg></span>
+          </button>
+        </div>
+      </div>
+      <div class="map-bottom-space"></div>
+    </div>
+
+    <footer class="map-footer">
+      <div class="map-tip">
+        <svg class="ic"><use href="#i-info"></use></svg>
+        <span id="map-tip-text">Completa los dos niveles de cada mundo para abrir el siguiente.</span>
+      </div>
+      <div class="map-footer-actions">
+        <button id="btn-map-creator" class="btn btn-ghost btn-sm">
+          <svg class="ic"><use href="#i-refresh"></use></svg>
+          <span>Cambiar apariencia</span>
+        </button>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ══════════════ JUEGO ══════════════ -->
+  <section id="screen-game" class="screen game-screen">
+    <div class="game-wrap">
+      <div class="game-frame" id="game-frame">
+        <canvas id="game-canvas" width="1280" height="720" aria-label="Snoopy's Little World — juego de plataformas"></canvas>
+
+        <div class="hud hud-top">
+          <div class="hud-left">
+            <div class="hud-panel hearts-panel">
+              <div class="hearts" id="hud-hearts" aria-label="Vida"></div>
+              <div class="hud-name" id="hud-player-name">Explorador</div>
+            </div>
+            <div class="hud-panel companion-panel" id="companion-panel">
+              <div class="companion-avatar" aria-hidden="true">
+                <canvas id="hud-woodstock" width="96" height="96"></canvas>
+              </div>
+              <div class="companion-abilities">
+                <button class="ability-chip" id="ability-sense" title="Sentido de Woodstock: revela tesoros cercanos">
+                  <span class="ability-key">Q</span>
+                  <span class="ability-body"><b>Sentido</b><small id="sense-status">listo</small></span>
+                  <span class="ability-cd" id="sense-cd"></span>
+                </button>
+                <div class="ability-chip passive" title="Woodstock ataca cada 3 golpes en combate">
+                  <span class="ability-key"><svg class="ic"><use href="#i-paw"></use></svg></span>
+                  <span class="ability-body"><b>Picotazo</b><small>en combate</small></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hud-center">
+            <div class="hud-level" id="hud-level">Mundo 1 · Nivel 1</div>
+            <div class="hud-level-name" id="hud-level-name">La pradera de los sueños</div>
+          </div>
+
+          <div class="hud-right">
+            <div class="hud-panel bone-panel">
+              <svg class="ic"><use href="#i-bone"></use></svg>
+              <b id="hud-bones">0</b>
+              <span id="hud-bones-total">/ 0</span>
+            </div>
+            <button class="icon-btn hud-icon" id="btn-hud-inventory" aria-label="Inventario">
+              <svg class="ic"><use href="#i-bag"></use></svg>
+            </button>
+            <button class="icon-btn hud-icon sound-btn" id="btn-hud-sound" aria-label="Sonido">
+              <svg class="ic icon-sound-on"><use href="#i-sound"></use></svg>
+              <svg class="ic icon-sound-off"><use href="#i-mute"></use></svg>
+            </button>
+            <button class="icon-btn hud-icon" id="btn-hud-pause" aria-label="Pausa">
+              <svg class="ic"><use href="#i-pause"></use></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="level-banner" id="level-banner" aria-live="polite">
+          <span class="banner-world" id="banner-world">Mundo 1</span>
+          <b id="banner-name">La pradera de los sueños</b>
+          <span class="banner-tip" id="banner-tip">← → moverse · Espacio saltar</span>
+        </div>
+
+        <div class="toast-area" id="toast-area" aria-live="polite"></div>
+        <div class="emote-text" id="emote-text" aria-live="polite"></div>
+
+        <div class="touch-controls" id="touch-controls" aria-hidden="true">
+          <div class="touch-left">
+            <button class="touch-btn" data-key="left" aria-label="Izquierda"><svg class="ic"><use href="#i-left"></use></svg></button>
+            <button class="touch-btn" data-key="right" aria-label="Derecha"><svg class="ic"><use href="#i-right"></use></svg></button>
+            <button class="touch-btn touch-run" data-key="run" aria-label="Correr"><span>R</span></button>
+          </div>
+          <div class="touch-right">
+            <button class="touch-btn touch-interact" data-key="interact" aria-label="Interactuar"><span>E</span></button>
+            <button class="touch-btn touch-jump" data-key="jump" aria-label="Saltar"><svg class="ic"><use href="#i-right"></use></svg><span>salto</span></button>
+          </div>
+        </div>
+
+        <div class="combat-controls hidden" id="combat-controls">
+          <button class="combat-heal-btn" id="btn-combat-heal"><svg class="ic"><use href="#i-heart"></use></svg><span>Curar</span><b id="combat-heal-count">2</b></button>
+          <button class="combat-strike-btn" id="btn-combat-strike">¡AHORA!</button>
+        </div>
+      </div>
+      <div class="game-scenery-hint" id="game-key-hint">← → mover &nbsp;·&nbsp; Espacio saltar &nbsp;·&nbsp; Shift correr &nbsp;·&nbsp; E interactuar &nbsp;·&nbsp; Q sentido &nbsp;·&nbsp; H curar &nbsp;·&nbsp; I mochila</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FINAL ══════════════ -->
+  <section id="screen-ending" class="screen ending-screen">
+    <canvas id="ending-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+    <div class="ending-wash" aria-hidden="true"></div>
+    <div class="ending-stars" aria-hidden="true"></div>
+
+    <div class="ending-content">
+      <div class="ending-stage" id="ending-stage">
+        <div class="ending-dialog" id="ending-dialog">
+          <div class="ending-portrait-wrap">
+            <canvas id="ending-portrait" width="160" height="160" aria-label="Retrato"></canvas>
+            <span class="ending-portrait-ring"></span>
+          </div>
+          <div class="ending-speech">
+            <span class="ending-speaker" id="ending-speaker">Narrador</span>
+            <p id="ending-line">...</p>
+            <button class="ending-next" id="ending-next">Continuar <svg class="ic"><use href="#i-right"></use></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ending-letter hidden" id="ending-letter">
+        <div class="letter-paper">
+          <div class="letter-stamp"><svg class="ic"><use href="#i-heart"></use></svg></div>
+          <span class="letter-kicker">Una carta en el tejado</span>
+          <div class="letter-body" id="ending-letter-body"></div>
+          <div class="letter-sign">
+            <span>Con cariño,</span>
+            <b>Snoopy <span class="amp">&</span> Woodstock</b>
+          </div>
+          <div class="letter-stats" id="ending-stats"></div>
+        </div>
+        <div class="ending-actions" id="ending-actions">
+          <button class="btn btn-primary btn-lg" id="btn-ending-map">
+            <svg class="ic"><use href="#i-home"></use></svg>
+            <span>Volver al pequeño mundo</span>
+          </button>
+          <button class="btn btn-ghost" id="btn-ending-replay">
+            <svg class="ic"><use href="#i-refresh"></use></svg>
+            <span>Vivir la aventura otra vez</span>
+          </button>
+        </div>
+        <p class="ending-credit">Hecho con HTML, CSS, Canvas y muchísimo cariño.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ DIÁLOGO ══════════════ -->
+  <div class="overlay dialog-overlay hidden" id="dialog-overlay">
+    <div class="dialog-card" id="dialog-card">
+      <div class="dialog-portrait-wrap">
+        <canvas id="dialog-portrait" width="160" height="160" aria-label="Retrato del personaje"></canvas>
+        <div class="dialog-ring"></div>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-meta">
+          <span class="dialog-name" id="dialog-name">Charlie Brown</span>
+          <span class="dialog-chip" id="dialog-chip">amigo</span>
+        </div>
+        <p class="dialog-text" id="dialog-text"></p>
+        <div class="dialog-next" id="dialog-next">
+          <span class="keycap">E</span>
+          <span>continuar</span>
+          <span class="dialog-dots"><i></i><i></i><i></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAUSA ══════════════ -->
+  <div class="overlay pause-overlay hidden" id="pause-overlay">
+    <div class="modal pause-modal">
+      <span class="eyebrow">Un respiro entre huesitos</span>
+      <h2>Pausa</h2>
+      <div class="pause-buttons">
+        <button class="btn btn-primary" id="btn-resume"><svg class="ic"><use href="#i-play"></use></svg><span>Reanudar</span></button>
+        <button class="btn btn-cream" id="btn-restart"><svg class="ic"><use href="#i-refresh"></use></svg><span>Reiniciar nivel</span></button>
+        <button class="btn btn-cream" id="btn-pause-inventory"><svg class="ic"><use href="#i-bag"></use></svg><span>Recuerdos</span></button>
+        <button class="btn btn-cream" id="btn-pause-map"><svg class="ic"><use href="#i-map"></use></svg><span>Mapa de mundos</span></button>
+        <button class="btn btn-cream sound-btn" id="btn-pause-sound">
+          <svg class="ic icon-sound-on"><use href="#i-sound"></use></svg>
+          <svg class="ic icon-sound-off"><use href="#i-mute"></use></svg>
+          <span id="pause-sound-label">Sonido activado</span>
+        </button>
+      </div>
+      <div class="pause-help">
+        <p><b>Moverse</b> ← → / A D · <b>Correr</b> Shift · <b>Saltar</b> Espacio</p>
+        <p><b>Interactuar</b> E · <b>Sentido de Woodstock</b> Q · <b>Inventario</b> I</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ INVENTARIO ══════════════ -->
+  <div class="overlay inventory-overlay hidden" id="inventory-overlay">
+    <div class="modal inventory-modal">
+      <header class="inventory-head">
+        <div>
+          <span class="eyebrow">La mochila de los recuerdos</span>
+          <h2>Recuerdos de Snoopy</h2>
+        </div>
+        <div class="inventory-count">
+          <svg class="ic"><use href="#i-sparkle"></use></svg>
+          <b id="inv-progress">0 / 12</b>
+        </div>
+        <button class="icon-btn" id="btn-inv-close" aria-label="Cerrar inventario">
+          <svg class="ic"><use href="#i-close"></use></svg>
+        </button>
+      </header>
+      <div class="inventory-layout">
+        <div class="inv-grid" id="inv-grid" role="list"></div>
+        <aside class="inv-detail" id="inv-detail">
+          <div class="inv-detail-art">
+            <canvas id="inv-detail-canvas" width="260" height="260" aria-label="Ilustración del objeto"></canvas>
+            <span class="inv-detail-glow" aria-hidden="true"></span>
+          </div>
+          <span class="inv-detail-tag" id="inv-detail-tag">recuerdo</span>
+          <h3 id="inv-detail-name">Un recuerdo por descubrir</h3>
+          <p id="inv-detail-desc">Explora los mundos para encontrar los objetos que Snoopy dejó escondidos entre sus sueños.</p>
+          <div class="inv-detail-hint" id="inv-detail-hint">
+            <svg class="ic"><use href="#i-info"></use></svg>
+            <span>Los objetos encontrados se guardan para siempre.</span>
+          </div>
+        </aside>
+      </div>
+      <footer class="inventory-foot">
+        <span id="inv-footer-note">Cada recuerdo cuenta una parte de la historia.</span>
+        <button class="btn btn-ghost btn-sm" id="btn-inv-resume">Seguir explorando</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ══════════════ TRIVIA ══════════════ -->
+  <div class="overlay quiz-overlay hidden" id="quiz-overlay">
+    <div class="quiz-card" id="quiz-card">
+      <div class="quiz-top">
+        <div class="quiz-portrait-wrap">
+          <canvas id="quiz-portrait" width="160" height="160" aria-label="Retrato"></canvas>
+          <span class="quiz-ring"></span>
+        </div>
+        <div class="quiz-heading">
+          <span class="eyebrow" id="quiz-kicker">La biblioteca de los porqués</span>
+          <h2 id="quiz-question">¿Pregunta?</h2>
+        </div>
+        <button class="icon-btn" id="btn-quiz-close" aria-label="Cerrar trivia">
+          <svg class="ic"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+      <div class="quiz-foot">
+        <span class="quiz-hint"><span class="keycap">1</span> – <span class="keycap">4</span> para responder</span>
+        <span class="quiz-progress" id="quiz-progress"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ RESULTADOS ══════════════ -->
+  <div class="overlay results-overlay hidden" id="results-overlay">
+    <div class="results-card">
+      <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+      <div class="results-stars" id="results-stars" aria-hidden="true"></div>
+      <span class="eyebrow" id="results-kicker">Nivel completado</span>
+      <h2 id="results-title">La pradera de los sueños</h2>
+      <p class="results-subtitle" id="results-subtitle">Un paso más cerca de Snoopy.</p>
+      <div class="results-stats" id="results-stats"></div>
+      <div class="results-unlock hidden" id="results-unlock">
+        <svg class="ic"><use href="#i-sparkle"></use></svg>
+        <span id="results-unlock-text">¡Nuevo mundo desbloqueado!</span>
+      </div>
+      <div class="results-actions">
+        <button class="btn btn-ghost" id="btn-results-replay"><svg class="ic"><use href="#i-refresh"></use></svg><span>Repetir</span></button>
+        <button class="btn btn-primary" id="btn-results-map"><span>Volver al mapa</span><svg class="ic"><use href="#i-map"></use></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CONFIRMACIÓN ══════════════ -->
+  <div class="overlay confirm-overlay hidden" id="confirm-overlay">
+    <div class="modal confirm-modal">
+      <div class="confirm-icon"><svg class="ic"><use href="#i-heart"></use></svg></div>
+      <h2 id="confirm-title">¿Continuar?</h2>
+      <p id="confirm-text"></p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="btn-confirm-cancel">Cancelar</button>
+        <button class="btn btn-primary" id="btn-confirm-ok">Sí, continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-fade" id="screen-fade" aria-hidden="true"></div>
+</div>
+
+<script src="js/personal.js"></script>
+<script src="js/data.js"></script>
+<script src="js/art.js"></script>
+<script src="js/scenery.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/state.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
